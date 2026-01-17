@@ -356,17 +356,8 @@ RunService.Heartbeat:Connect(function()
         local tornadoCenter = humanoidRootPart.Position
         for _, part in pairs(parts) do
             if part.Parent and not part.Anchored then
-                local pos = part.Position
-                local distance = (Vector3.new(pos.X, tornadoCenter.Y, pos.Z) - tornadoCenter).Magnitude
-                local angle = math.atan2(pos.Z - tornadoCenter.Z, pos.X - tornadoCenter.X)
-                local newAngle = angle + math.rad(rotationSpeed)
-                local targetPos = Vector3.new(
-                    tornadoCenter.X + math.cos(newAngle) * math.min(radius, distance),
-                    tornadoCenter.Y + (height * (math.abs(math.sin((pos.Y - tornadoCenter.Y) / height)))),
-                    tornadoCenter.Z + math.sin(newAngle) * math.min(radius, distance)
-                )
                 local directionToTarget = (targetPos - part.Position).unit
-                part.Velocity = directionToTarget * attractionStrength
+                part.Velocity = Vector3.new(math.huge,math.huge,math.huge)
             end
         end
     end
